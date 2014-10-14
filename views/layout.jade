@@ -1,0 +1,57 @@
+doctype html
+html(lang=en)
+    head
+        title WeeMS
+        meta(name='charset',content='utf-8')
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name='viewport',content='width=device-width, initial-scale=1')
+        meta(name='description',content='')
+        meta(name='author',content='')
+
+        link(rel='stylesheet', href='vendor/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', href='css/style.css')
+        link(rel='stylesheet', href='vendor/slidepushmenus/css/component.css')
+
+        script(src="vendor/slidepushmenus/js/modernizr.custom.js",type="application/javascript")
+        script(src="vendor/jquery-1.11.0.min.js",type="application/javascript")
+        script(src="vendor/angular.min.js",type="application/javascript")
+        script(src="vendor/angular-route.min.js",type="application/javascript")
+
+        script(src="public/out.js",type="application/javascript")
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js",type="application/javascript")
+        script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js",type="application/javascript")
+        <![endif]-->
+    body(ng-app="MyApp",class="cbp-spmenu-push", ng-controller="MainController")
+        nav#cbp-spmenu-s1.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-left
+            h3 Menu
+            a(href='#') Dashboard
+            a(href='#') Items
+            a(href='#') Customers
+            a(href='#') Users
+        .container
+            header.clearfix
+                span WeeMS
+                section.buttonset
+                    button#showLeftPush Show/Hide Menu
+                testme
+            .main
+                h3 {{GeoLocationResult.country_name}} - {{GeoLocationResult.city}}
+                p(style='white-space:pre;')
+                   | IP : {{GeoLocationResult.ip}}
+                   | City : {{GeoLocationResult.city}}
+                   | Country : {{GeoLocationResult.country_name}} ({{GeoLocationResult.country_code}})
+                   | Region : {{GeoLocationResult.region_name}}
+                img(src='http://maps.googleapis.com/maps/api/staticmap?zoom=13&size=600x600&maptype=terrain&markers=color:red%7C{{GeoLocationResult.latitude}}%2C{{GeoLocationResult.longitude}}')
+        script(src='vendor/bootstrap/js/bootstrap.min.js')
+        script(src='vendor/slidepushmenus/js/classie.js')
+        script(type="text/javascript").
+            var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+            body = document.body;
+            showLeftPush.onclick = function() {
+                classie.toggle( this, 'active' )
+                classie.toggle( body, 'cbp-spmenu-push-toright' )
+                classie.toggle( menuLeft, 'cbp-spmenu-open' )
+            };
